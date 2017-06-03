@@ -1,6 +1,7 @@
 package com.liuzhuang.alltextdemo.utils;
 
 import com.google.gson.reflect.TypeToken;
+import com.liuzhuang.alltextdemo.model.Meizi;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,24 +26,6 @@ public class Api {
     public  static  String AGREEMENT = "/Register/agreement";
     private static final String LOGIN="/Login/login";
     private static final String GETCODE="/Register/getCode";
-    private static final String USERREGISTER="/Register/userRegister";
-    private static final String FORGETPASS="/User/forgetPass";
-    private static final String GETPICTURES="/User/getPictures";
-    private static final String INDEX="/User/index";
-    private static final String UPUSERNAME="/User/upUsername";
-    private static final String ADDCAR="/User/addCar";
-    private static final String SETUSERPHOTO="/User/setUserPhoto";
-    private static final String LOGOUT="/Login/logout";
-    private static final String UPPASSWORD="/User/upPassword";
-    private static final String PARKINGINDEX="/Parking/index";
-    private static final String PARKLIST="/Parking/parkList";
-    private static final String PARKINGCOUPON="/User/parkingCoupon";
-    private static final String RECEIVECOUPON="/User/receiveCoupon";
-    private static final String MYCOUPON="/User/myCoupon";
-    private static final String RESERVEPARK="/Parking/reservePark";
-    private static final String PAYLIST="/Parking/payList";
-    private static final String UNSETRESERVE="/Parking/unsetReserve";
-    private static final String ORDERLIST="/User/orderList";
 
     /**
      * 是否debug调试（切换测试环境和生产环境）
@@ -77,6 +60,11 @@ public class Api {
       params.put("txt_password",password);
       HttpUtil httpUtil=new HttpUtil();
       httpUtil.doRequest(API_METHOD.GET,HOST+LOGIN,params,listenter,new TypeToken<String>(){}.getType(),false);
+  }
+  public  void getRecyclerview(String username,  HttpUtil.URLListenter<Meizi> listenter){
+      Map<String,String> params = new HashMap<>();
+      HttpUtil httpUtil=new HttpUtil();
+      httpUtil.doRequest(API_METHOD.GET,HOST+LOGIN,params,listenter,new TypeToken<Meizi>(){}.getType(),false);
   }
 
 
