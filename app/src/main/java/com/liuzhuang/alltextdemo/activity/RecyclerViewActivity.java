@@ -6,18 +6,22 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 
+import com.liuzhuang.alltextdemo.BaseActivity;
 import com.liuzhuang.alltextdemo.R;
 import com.liuzhuang.alltextdemo.adapter.MyFragmentPagerAdapter;
 import com.liuzhuang.alltextdemo.fragment.Fragment1;
 import com.liuzhuang.alltextdemo.fragment.Fragment2;
 import com.liuzhuang.alltextdemo.fragment.Fragment3;
+
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/3 0003.
  */
-public class RecyclerViewActivity extends FragmentActivity {
+public class RecyclerViewActivity extends BaseActivity {
     private List<Fragment> fragmentList=new ArrayList<Fragment>();
     private List<String> tabList=new ArrayList<String>();
     private ViewPager pager;

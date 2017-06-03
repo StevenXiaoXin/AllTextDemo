@@ -52,7 +52,6 @@ public class Fragment2 extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment2, container, false);
 
         initView(view);
@@ -147,59 +146,61 @@ public class Fragment2 extends Fragment {
 
 
     public void getData(String url) {
-        swipeRefreshLayout.setRefreshing(true);
+//        swipeRefreshLayout.setRefreshing(true);
         RequestParams params = new RequestParams(url);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                if(!TextUtils.isEmpty(result)){
 
-                    JSONObject jsonObject;
-                    Gson gson=new Gson();
-                    String jsonData=null;
-
-                    try {
-                        jsonObject = new JSONObject(result);
-                        jsonData = jsonObject.getString("results");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if(meizis==null||meizis.size()==0){
-                        meizis= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
-                        Meizi pages=new Meizi();
-                        pages.setPage(page);
-                        meizis.add(pages);
-                    }else{
-                        List<Meizi> more= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
-                        meizis.addAll(more);
-                        Meizi pages=new Meizi();
-                        pages.setPage(page);
-                        meizis.add(pages);
-                    }
-
-                    if(mAdapter==null){
-                        recyclerview.setAdapter(mAdapter = new GridAdapter(getActivity(),meizis));
-
-                        mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
-                            @Override
-                            public void onItemClick(View view) {
-                                int position=recyclerview.getChildAdapterPosition(view);
-                                SnackbarUtil.ShortSnackbar(coordinatorLayout,"点击第"+position+"个",SnackbarUtil.Info).show();
-                            }
-
-                            @Override
-                            public void onItemLongClick(View view) {
-                                itemTouchHelper.startDrag(recyclerview.getChildViewHolder(view));
-                            }
-                        });
-
-                        itemTouchHelper.attachToRecyclerView(recyclerview);
-                    }else{
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }
+                Log.e("-----", result);
+//                if(!TextUtils.isEmpty(result)){
+//
+//                    JSONObject jsonObject;
+//                    Gson gson=new Gson();
+//                    String jsonData=null;
+//
+//                    try {
+//                        jsonObject = new JSONObject(result);
+//                        jsonData = jsonObject.getString("results");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                    if(meizis==null||meizis.size()==0){
+//                        meizis= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
+//                        Meizi pages=new Meizi();
+//                        pages.setPage(page);
+//                        meizis.add(pages);
+//                    }else{
+//                        List<Meizi> more= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
+//                        meizis.addAll(more);
+//                        Meizi pages=new Meizi();
+//                        pages.setPage(page);
+//                        meizis.add(pages);
+//                    }
+//
+//                    if(mAdapter==null){
+//                        recyclerview.setAdapter(mAdapter = new GridAdapter(getActivity(),meizis));
+//
+//                        mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
+//                            @Override
+//                            public void onItemClick(View view) {
+//                                int position=recyclerview.getChildAdapterPosition(view);
+//                                SnackbarUtil.ShortSnackbar(coordinatorLayout,"点击第"+position+"个",SnackbarUtil.Info).show();
+//                            }
+//
+//                            @Override
+//                            public void onItemLongClick(View view) {
+//                                itemTouchHelper.startDrag(recyclerview.getChildViewHolder(view));
+//                            }
+//                        });
+//
+//                        itemTouchHelper.attachToRecyclerView(recyclerview);
+//                    }else{
+//                        mAdapter.notifyDataSetChanged();
+//                    }
+//                }
                 //停止swipeRefreshLayout加载动画
-                swipeRefreshLayout.setRefreshing(false);
+//                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override

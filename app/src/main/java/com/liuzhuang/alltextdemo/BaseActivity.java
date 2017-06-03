@@ -2,6 +2,7 @@ package com.liuzhuang.alltextdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.liuzhuang.alltextdemo.dialog.ProDialog;
 
@@ -12,7 +13,7 @@ import org.xutils.x;
  * @author Liu
  * @description 基本Activity
  */
-public  class BaseActivity extends Activity {
+public  class BaseActivity extends AppCompatActivity {
 
 	public static final String BATG = "BaseActivity";
 	private ProDialog proDialog;
