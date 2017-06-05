@@ -29,7 +29,7 @@
             android:id="@+id/btn_eventbus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="自定义view"
+            android:text="EventBus"
             android:textColor="#FF4081"
             />
     </LinearLayout>

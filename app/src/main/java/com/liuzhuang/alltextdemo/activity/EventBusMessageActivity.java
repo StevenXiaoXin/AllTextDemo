@@ -1,5 +1,6 @@
 package com.liuzhuang.alltextdemo.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +28,8 @@ public class EventBusMessageActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(
-                        new FirstEvent("FirstEvent btn clicked"));
+                        new FirstEvent("EventBus btn onclick"));
+                EventBusMessageActivity.this.finish();
             }
         });
     }

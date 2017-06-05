@@ -1,5 +1,6 @@
 package com.liuzhuang.alltextdemo.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.liuzhuang.alltextdemo.R;
 import com.liuzhuang.alltextdemo.enerty.FirstEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -39,11 +41,11 @@ public class EventBusActivity extends BaseActivity {
         });
 
     }
-
+    @Subscribe
     public void onEventMainThread(FirstEvent event) {
 
         String msg = "onEventMainThread收到了消息：" + event.getMsg();
-        Log.d("harvic", msg);
+
         eventbus_msg.setText(msg);
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
