@@ -25,6 +25,7 @@ public  class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Context mContext;
     private List<Meizi> datas;
 
+
     public static interface OnRecyclerViewItemClickListener {
         void onItemClick(View view);
         void onItemLongClick(View view);

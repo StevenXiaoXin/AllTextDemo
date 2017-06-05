@@ -22,16 +22,11 @@ import com.liuzhuang.alltextdemo.R;
 import com.liuzhuang.alltextdemo.adapter.GridAdapter;
 import com.liuzhuang.alltextdemo.model.Meizi;
 
+import com.liuzhuang.alltextdemo.utils.MyOkhttp;
 import com.liuzhuang.alltextdemo.utils.SnackbarUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -50,22 +45,14 @@ public class Fragment2 extends Fragment {
     private int page=1;
     private ItemTouchHelper itemTouchHelper;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String url="";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment2, container, false);
-        String fuli="福利";
-        try {
-            fuli= URLEncoder.encode(fuli,"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        url="http://gank.io/api/data/"+fuli+"/10/";
         initView(view);
         setListener();
         new GetData().execute("http://gank.io/api/data/福利/10/1");
 
-//        getData(url+"1");
 
         return view;
     }
@@ -151,84 +138,6 @@ public class Fragment2 extends Fragment {
         });
     }
 
-
-
-    public void getData(String url) {
-        swipeRefreshLayout.setRefreshing(true);
-        RequestParams params = new RequestParams(url);
-        x.http().get(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-
-                Log.e("-----", result);
-                if(!TextUtils.isEmpty(result)){
-
-                    JSONObject jsonObject;
-                    Gson gson=new Gson();
-                    String jsonData=null;
-
-                    try {
-                        jsonObject = new JSONObject(result);
-                        jsonData = jsonObject.getString("results");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if(meizis==null||meizis.size()==0){
-                        meizis= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
-                        Meizi pages=new Meizi();
-                        pages.setPage(page);
-                        meizis.add(pages);
-                    }else{
-                        List<Meizi> more= gson.fromJson(jsonData, new TypeToken<List<Meizi>>() {}.getType());
-                        meizis.addAll(more);
-                        Meizi pages=new Meizi();
-                        pages.setPage(page);
-                        meizis.add(pages);
-                    }
-
-                    if(mAdapter==null){
-                        recyclerview.setAdapter(mAdapter = new GridAdapter(getActivity(),meizis));
-
-                        mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
-                            @Override
-                            public void onItemClick(View view) {
-                                int position=recyclerview.getChildAdapterPosition(view);
-                                SnackbarUtil.ShortSnackbar(coordinatorLayout,"点击第"+position+"个",SnackbarUtil.Info).show();
-                            }
-
-                            @Override
-                            public void onItemLongClick(View view) {
-                                itemTouchHelper.startDrag(recyclerview.getChildViewHolder(view));
-                            }
-                        });
-
-                        itemTouchHelper.attachToRecyclerView(recyclerview);
-                    }else{
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }
-//                停止swipeRefreshLayout加载动画
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("dasdas", ex.toString());
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
-    }
-
     private class GetData extends AsyncTask<String, Integer, String> {
 
         @Override
@@ -241,8 +150,8 @@ public class Fragment2 extends Fragment {
         @Override
         protected String doInBackground(String... params) {
 
-//            return MyOkhttp.get(params[0]);
-            return "";
+            return MyOkhttp.get(params[0]);
+
         }
 
         protected void onPostExecute(String result) {
