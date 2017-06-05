@@ -3,10 +3,6 @@ package com.liuzhuang.alltextdemo.utils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 
 /**
  * Created by 赵晨璞 on 2016/6/16.
