@@ -20,6 +20,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private Button btn_recyclerview;
     @ViewInject(R.id.btn_defined_view)
     private Button btn_defined_view;
+    @ViewInject(R.id.btn_eventbus)
+    private Button btn_eventbus;
 
 
     private Activity act;
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private void initData() {
         btn_recyclerview.setOnClickListener(this);
         btn_defined_view.setOnClickListener(this);
+        btn_eventbus.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +52,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.btn_defined_view:
                 Intent intent2=new Intent(act,DefinedViewActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.btn_eventbus:
+                Intent intent3=new Intent(act,EventBusActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
