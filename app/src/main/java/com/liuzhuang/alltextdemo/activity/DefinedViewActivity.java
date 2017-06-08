@@ -12,14 +12,16 @@ import org.xutils.view.annotation.ViewInject;
 /**
  * Created by Administrator on 2017/6/3 0003.
  */
-@ContentView(R.layout.activity_difinedview)
+//@ContentView(R.layout.activity_difinedview)
 public class DefinedViewActivity extends BaseActivity {
-    @ViewInject(R.id.wuziqi)
+//    @ViewInject(R.id.wuziqi)
     private WuziqiPanel wuziqiPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_difinedview);
+        wuziqiPanel= (WuziqiPanel) findViewById(R.id.wuziqi);
 
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 
 
 import com.liuzhuang.alltextdemo.BaseActivity;
+
 import com.liuzhuang.alltextdemo.R;
 import com.liuzhuang.alltextdemo.adapter.MyFragmentPagerAdapter;
 import com.liuzhuang.alltextdemo.fragment.Fragment1;
